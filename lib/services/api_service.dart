@@ -6,28 +6,26 @@ class APIService {
   final String _baseUrl = 'api.nytimes.com';
   static const String API_KEY = 'pgEr3OsD4z8w7DP9EzCrrnw9Vv7C3zGA';
 
-
   Future<List<Article>> fetchArticlesBySection(String section) async {
-    Map<String, String> params = {
+    Map<String, String> parameters = {
       'api-key': API_KEY,
     };
     Uri uri = Uri.https(
       _baseUrl,
-       '/svc/topstories/v2/$section.json',
-       params,
+      '/svc/topstories/v2/$section.json',
+      parameters,
+    );
+    try {
+      var response = await http.get(uri);
+      Map<String, dynamic> data = json.decode(response.body);
+      List<Article> articles = [];
+      data['results'].forEach(
+        (articleMap) => articles.add(Article.fromMap(articleMap)),
       );
-      try {
-        var response = await http.get(uri);
-        Map<String, dynamic> data = json.decode(response.body);
-        List<Article> articles = [];
-        data['results'].forEach(
-          (articleMap) => articles.add(Article.fromMap(articleMap))
-        );
-        return articles;
-
-      } catch (err) {
-        throw err.toString();
-      }
+      return articles;
+    } catch (err) {
+      throw err.toString();
+    }
   }
 
 }
