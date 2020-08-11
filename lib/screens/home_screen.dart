@@ -1,3 +1,4 @@
+import 'package:news_website/helpers/responsive_helper.dart';
 import 'package:news_website/models/article_model.dart';
 import 'package:news_website/services/api_service.dart';
 import 'package:flutter/material.dart';
@@ -33,10 +34,10 @@ class _HomeScreenState extends State<HomeScreen> {
      });
 
      return Padding(
-       padding: EdgeInsets.symmetric(horizontal: 100.0, vertical: 50.0),
+       padding: responsivePadding(mediaQuery),
        child: GridView.count(
          // 4 items in one row can be made responsive
-         crossAxisCount: 4,
+         crossAxisCount: responsiveNumGridTiles(mediaQuery),
          mainAxisSpacing: 30.0,
          crossAxisSpacing: 30.0,
          shrinkWrap: true,
@@ -62,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: <Widget>[
             Container(
-              height: 250.0,
+              height: responsiveImageHeight(mediaQuery),
               alignment: Alignment.bottomCenter,
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -79,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Container(
               padding: EdgeInsets.all(10.0),
               alignment: Alignment.center,
-              height: 120.0,
+              height: responsiveTitleHeight(mediaQuery),
               width: double.infinity,
               decoration: BoxDecoration(
                 color: Colors.white,
