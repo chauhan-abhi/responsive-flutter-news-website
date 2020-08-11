@@ -35,6 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
      return Padding(
        padding: EdgeInsets.symmetric(horizontal: 100.0, vertical: 50.0),
        child: GridView.count(
+         // 4 items in one row can be made responsive
          crossAxisCount: 4,
          mainAxisSpacing: 30.0,
          crossAxisSpacing: 30.0,
@@ -94,6 +95,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     )
                 ],
               ),
+              child: Text(
+                article.title,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold
+                ),
+                maxLines: 2,
+              ),
             )  
           ],
         ),
@@ -111,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
           SizedBox(height: 80.0),
           Center(
             child: Text(
-              'The NY Times \nTop Tech Articles',
+              'The New York Times \nTop Tech Articles',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 30.0,
